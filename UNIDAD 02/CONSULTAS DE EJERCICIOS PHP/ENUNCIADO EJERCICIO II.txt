@@ -1,0 +1,63 @@
+Ejercicio 1: Mostrar un mensaje dinámico
+
+Enunciado:
+Crea una página saludo.php que contenga código HTML con un título y un párrafo.
+Dentro del párrafo, incrusta código PHP que muestre un saludo con tu nombre, por ejemplo:
+
+“¡Hola, María! Bienvenida a la página.”
+
+Pista: Usa echo dentro de <?php ... ?>.
+
+Ejercicio 2: Mostrar la fecha actual
+
+Enunciado:
+Crea una página fecha.php con una estructura HTML. Dentro del contenido, muestra la
+fecha actual usando PHP, con el formato:
+
+“Hoy es martes, 7 de octubre de 2025.”
+
+Pista: Usa date("l, j \d\e F \d\e Y") (puedes ponerlo en español con setlocale() si quieres).
+
+Ejercicio 3: Mostrar una lista de productos
+
+Enunciado:
+Crea una página productos.php que tenga una lista HTML (<ul>). Dentro de la lista, utiliza un array PHP con varios productos (por ejemplo, “Manzanas”, “Peras”, 
+“Naranjas”) y genera los elementos <li> de forma dinámica.
+
+Pista: Usa un foreach dentro del HTML.
+
+Ejercicio 4: Formulario con mensaje personalizado
+
+Enunciado:
+Crea una página formulario.php con un formulario HTML que pida el nombre del
+usuario (método POST).
+
+Cuando el usuario lo envíe, muestra un mensaje dentro del mismo HTML que diga:
+“Hola, [nombre], gracias por visitar mi web.”
+
+Pista: Usa $_POST y condicionales if en el mismo archivo.
+
+Ejercicio 5: Calcular el total de una compra
+
+Enunciado:
+Crea una página compra.php con una tabla HTML que muestre el nombre del producto,
+cantidad, precio unitario y el total.
+Declara los productos y precios en un array PHP, y muestra la tabla con un bucle. Al
+final, muestra el total general.
+
+
+Pista:
+Usa una estructura como:
+
+$productos = [
+
+["nombre" => "Camisa", "precio" => 20, "cantidad" => 2],
+
+["nombre" => "Pantalón", "precio" => 30, "cantidad" => 1],
+
+];
+
+Y calcula el total dentro del bucle.
+
+Objetivo:
+Practicar la mezcla de PHP y HTML en tablas con cálculos dinámicos.
