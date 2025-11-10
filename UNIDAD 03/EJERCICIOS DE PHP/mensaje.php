@@ -1,0 +1,1 @@
+<p>Este texto fue insertado usando <strong>include</strong>.</p>
