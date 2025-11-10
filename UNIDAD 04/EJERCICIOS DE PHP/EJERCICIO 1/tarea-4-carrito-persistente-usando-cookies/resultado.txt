@@ -1,0 +1,20 @@
+PASOS PARA COMPROBAR
+--------------------
+1. Abrir cart.php.
+ESPERADO: Ver listado de productos.
+
+
+2. Pulsar "Añadir" varias veces.
+ESPERADO: El carrito aumenta.
+
+
+3. Ir a mostrar_carrito.php.
+ESPERADO: Ver total correcto.
+
+
+4. Quitar productos desde cart.php.
+ESPERADO: La cantidad disminuye.
+
+
+5. Simular muchos productos (añadir cientos de veces) hasta superar 3KB.
+ESPERADO: Mensaje de advertencia: el carrito no puede guardarse.

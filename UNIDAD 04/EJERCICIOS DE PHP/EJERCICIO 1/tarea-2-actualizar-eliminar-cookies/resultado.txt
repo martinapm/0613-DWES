@@ -1,0 +1,17 @@
+PASOS PARA COMPROBAR
+--------------------
+1. Utilizar la cookie desde la tarea 1.
+
+2. Ir a actualizar_cookie.php.
+- Introducir un valor como "nuevoUser".
+- Esperado: Mensaje "Cookie actualizada correctamente".
+- Luego ir a leer_cookie.php y debe aparecer el nuevo valor.
+
+
+3. Probar a enviar un valor con caracteres de control.
+- Esperado: "El valor contiene caracteres de control no permitidos".
+
+
+4. Ir a borrar_cookie.php.
+- Esperado: Mensaje indicando que se borró.
+- En leer_cookie.php debe salir "No hay cookie".
