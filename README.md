@@ -61,7 +61,6 @@ El repositorio contiene los materiales correspondientes a las siguientes unidade
 - Generación y consumo de servicios web SOAP y REST con herramientas de prueba.
 
 ### 🌐 Unidad 08 – PHP
-- Procesamiento en cliente y servidor: diferencias y aplicaciones en desarrollo web.
 - Generación dinámica de páginas con verificación de información en el cliente.
 - Obtención remota de información asíncrona con AJAX y jQuery.
 - Manipulación del DOM para modificación dinámica de la estructura de páginas web.
@@ -188,6 +187,7 @@ Puedes usar, adaptar o compartir el contenido siempre que cites la fuente origin
 <p align="center">
   ✨<i>“MPM”</i>✨
 </p>
+
 
 
 
