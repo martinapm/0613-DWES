@@ -50,6 +50,11 @@ El repositorio contiene los materiales correspondientes a las siguientes unidade
 - Separación de responsabilidades (Lógica de negocio, Interfaz, Control).
 - Generación dinámica de páginas Web con PHP.
 
+### 🗄️ Unidad 06 – PHP
+- Establecimiento de conexiones con bases de datos.
+- Recuperación y edición de información con conjuntos de resultados.
+- Gestión de errores y transacciones en operaciones CRUD.
+- Utilización de PDO, ODBC y MongoDB.
 
 ---
 
@@ -173,4 +178,5 @@ Puedes usar, adaptar o compartir el contenido siempre que cites la fuente origin
 <p align="center">
   ✨<i>“MPM”</i>✨
 </p>
+
 
