@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 8</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <h2>Lista de Posts - Eliminar</h2>
+    <button id="cargarPosts">Cargar Posts</button>
+    
+    <div id="listaPosts"></div>
+    
+    <script>
+                                                    // se ejecuta cuando el dom está completamente cargado
+    $(document).ready(function(){
+                                                               // captura el click del botón "Cargar Posts"
+        $("#cargarPosts").click(function(){
+                                                // realiza una petición ajax para obtener todos los posts
+            $.ajax({
+                url: "https://jsonplaceholder.typicode.com/posts",
+                method: "GET",
+                dataType: "json",
+                success: function(respuesta){
+                    mostrarPosts(respuesta);
+                },
+                error: function(){
+                    $("#listaPosts").text("Error al cargar los posts");
+                }
+            });
+        });
+        
+                              // ejecuta automáticamente el click para cargar los posts al abrir la página
+        $("#cargarPosts").click();
+        
+                                        // función que muestra los posts con un botón para eliminar cada uno
+        function mostrarPosts(posts) {
+                                                                               // limpia la lista anterior
+            $("#listaPosts").empty();
+            
+                                                                          // recorre cada post y lo muestra
+            $.each(posts, function(index, post){
+                                                                             // crea un div para cada post
+                var postDiv = $("<div></div>");
+                postDiv.html(
+                    "<strong>ID " + post.id + ":</strong> " + post.title + 
+                    "<button class='eliminar' data-id='" + post.id + "'>Eliminar</button><br>" +
+                    post.body.substring(0, 50) + "...<hr>"
+                );
+                
+                                                                // agrega el div al contenedor de posts
+                $("#listaPosts").append(postDiv);
+            });
+            
+                                                           // captura el click en cualquier botón "Eliminar"
+            $(".eliminar").click(function(){
+                                             // obtiene el id del post desde el atributo data-id del botón
+                var postId = $(this).data("id");
+                                                              // llama a la función para eliminar el post
+                eliminarPost(postId, $(this));
+            });
+        }
+        
+                                      // función que elimina un post haciendo una petición delete a la api
+        function eliminarPost(id, boton) {
+                                                             // realiza una petición ajax con método delete
+            $.ajax({
+                url: "https://jsonplaceholder.typicode.com/posts/" + id,
+                method: "DELETE",          
+                success: function(){
+                                                               // reemplaza el contenido del post con un mensaje de confirmación
+                    boton.closest("div").html("Post " + id + " eliminado (simulado)");
+                },
+                error: function(){
+                    boton.closest("div").append(" - Error al eliminar");
+                }
+            });
+        }
+    });
+    </script>
+</body>
+</html>

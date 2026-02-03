@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <h2>Lista de usuarios</h2>
+    <button id="cargarUsuarios">Cargar usuarios</button>
+    
+
+    <ul id="listaUsuarios"></ul>
+    
+    <script>
+                                                    // se ejecuta cuando el DOM está completamente cargado
+    $(document).ready(function(){
+                                                    // captura el evento click del botón "Cargar usuarios"
+        $("#cargarUsuarios").click(function(){
+                                                     // realiza una petición ajax a la api jsonplaceholder
+            $.ajax({
+                url: "https://jsonplaceholder.typicode.com/users",  
+                method: "GET",                 
+                dataType: "json",              
+                
+                success: function(respuesta){
+                                                      // limpia la lista antes de agregar nuevos elementos
+                    $("#listaUsuarios").empty();
+                    
+                                                                // recorre cada usuario obtenido de la api
+                    $.each(respuesta, function(index, usuario){
+                        $("#listaUsuarios").append(
+                            "<li><strong>" + usuario.name + "</strong><br>" +
+                            "Email: " + usuario.email + "</li>"
+                        );
+                    });
+                },
+                
+                error: function(){
+                    $("#listaUsuarios").html("<li>Hubo un error al cargar los usuarios</li>");
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>

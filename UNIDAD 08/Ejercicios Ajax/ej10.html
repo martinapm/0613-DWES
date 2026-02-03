@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 10</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <h2>Posts con Autores</h2>
+    <div id="resultados"></div>
+    
+    <script>
+                                                    // se ejecuta cuando el DOM está completamente cargado
+    $(document).ready(function(){
+                                             // muestra un mensaje de carga mientras se obtienen los datos
+        $("#resultados").text("Cargando...");
+        
+        // realiza dos peticiones AJAX simultáneamente usando $.when() || $.when() espera a que ambas peticiones se completen
+        $.when(
+            $.ajax("https://jsonplaceholder.typicode.com/posts"),    
+            $.ajax("https://jsonplaceholder.typicode.com/users")     
+                                                        // se ejecuta cuando ambas peticiones son exitosas
+        ).done(function(postsResponse, usersResponse){
+                                                  // extrae los datos de la respuesta (el índice [0] contiene los datos, [1] el estado)
+            var posts = postsResponse[0];
+            var users = usersResponse[0];
+            
+            // crea un objeto para almacenar los usuarios por su ID || esto permite buscar rápidamente el nombre de un usuario por su ID
+            var usuariosMap = {};
+            $.each(users, function(index, user){
+                usuariosMap[user.id] = user.name;
+            });
+            
+            // limpia el contenedor de resultados
+            $("#resultados").empty();
+            
+                                              // recorre cada post y lo muestra con el nombre de su autor
+            $.each(posts, function(index, post){
+                                              // busca el nombre del autor en el mapa, o muestra "Autor desconocido" si no existe
+                var autor = usuariosMap[post.userId] || "Autor desconocido";
+                
+                                              // agrega el post con el título, autor y un fragmento del cuerpo
+                $("#resultados").append(
+                    "<div><strong>" + post.title + "</strong><br>" +
+                    "Por: " + autor + "<br>" +
+                    post.body.substring(0, 100) + "...<hr></div>"
+                );
+            });
+            
+                                                          // se ejecuta si una o ambas peticiones fallan
+        }).fail(function(){
+                                                            // muestra un mensaje de error
+            $("#resultados").text("Error al cargar los datos");
+        });
+    });
+    </script>
+</body>
+</html>

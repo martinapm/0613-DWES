@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <h2>Comentarios Paginados</h2>
+    
+    <button id="cargar">Cargar Comentarios</button>
+    <button id="anterior">Anterior</button>
+    <button id="siguiente">Siguiente</button>
+    
+    <div>Página: <span id="pagina">1</span></div>
+    
+    <div id="comentarios"></div>
+    
+    <script>
+                                                   // se ejecuta cuando el DOM está completamente cargado
+    $(document).ready(function(){
+        var paginaActual = 1;
+        var comentariosPorPagina = 10;
+        var todosComentarios = [];
+        
+        // Captura el click del botón "Cargar Comentarios"
+        $("#cargar").click(function(){
+            // Realiza una petición AJAX para obtener todos los comentarios
+            $.ajax({
+                url: "https://jsonplaceholder.typicode.com/comments",
+                method: "GET",
+                dataType: "json",
+                                                                              // si la petición es exitosa
+                success: function(respuesta){
+                                                               // guarda todos los comentarios en el array
+                    todosComentarios = respuesta;
+                                                                              // muestra la primera página
+                    mostrarPagina(1);
+                },
+                error: function(){
+                    $("#comentarios").text("Error al cargar los comentarios");
+                }
+            });
+        });
+        
+                              // ejecuta automáticamente el click para cargar los comentarios al abrir la página
+        $("#cargar").click();
+        
+                                           // función que muestra los comentarios de una página específica
+        function mostrarPagina(pagina) {
+                                                                     // actualiza el número de página actual
+            paginaActual = pagina;
+                                                      // actualiza el texto que muestra el número de página
+            $("#pagina").text(paginaActual);
+            
+                                                  // calcula el índice inicial de los comentarios a mostrar
+            var inicio = (paginaActual - 1) * comentariosPorPagina;
+                                                      // calcula el índice final de los comentarios a mostrar
+            var fin = inicio + comentariosPorPagina;
+                                               // obtiene solo los comentarios de esa página usando slice
+            var comentariosPagina = todosComentarios.slice(inicio, fin);
+            
+                                                                         // limpia los comentarios anteriores
+            $("#comentarios").empty();
+            
+                                                        // recorre cada comentario de la página y lo muestra
+            $.each(comentariosPagina, function(index, comentario){
+                $("#comentarios").append(
+                    "<div><strong>" + comentario.name + "</strong> (" + comentario.email + ")<br>" +
+                    comentario.body + "<hr></div>"
+                );
+            });
+            
+                                               // desactiva el botón "anterior" si estamos en la primera página
+            $("#anterior").prop("disabled", paginaActual <= 1);
+                                                   // desactiva el botón "siguiente" si no hay más comentarios
+            $("#siguiente").prop("disabled", fin >= todosComentarios.length);
+        }
+        
+                                                                  // captura el click del botón "anterior"
+        $("#anterior").click(function(){
+                                                   // si no es la primera página, muestra la página anterior
+            if (paginaActual > 1) {
+                mostrarPagina(paginaActual - 1);
+            }
+        });
+        
+                                                                  // captura el click del botón "siguiente"
+        $("#siguiente").click(function(){
+                                                               // calcula el número de la siguiente página
+            var siguientePagina = paginaActual + 1;
+                                                        // calcula el índice inicial de la siguiente página
+            var fin = (siguientePagina - 1) * comentariosPorPagina;
+            
+                                                      // si hay más comentarios, muestra la siguiente página
+            if (fin < todosComentarios.length) {
+                mostrarPagina(siguientePagina);
+            }
+        });
+    });
+    </script>
+</body>
+</html>

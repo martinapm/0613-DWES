@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <h2>Formulario para enviar datos</h2>
+    <form id="formulario">
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre"><br><br>
+        
+        <label for="comentario">Comentario:</label><br>
+        <textarea id="comentario" name="comentario"></textarea><br><br>
+        
+        <button type="submit">Enviar</button>
+    </form>
+    
+    <div id="resultado"></div>
+    
+    <script>
+                                                    // se ejecuta cuando el DOM está completamente cargado
+    $(document).ready(function(){
+                                                        // captura el evento submit (envío) del formulario
+        $("#formulario").submit(function(event){
+                                                        // evita el envío normal del formulario
+            event.preventDefault();
+            
+                                       // crea un objeto con los datos del formulario para enviar a la api
+            var datos = {
+                title: $("#nombre").val(),         
+                body: $("#comentario").val(),      
+                userId: 1                          
+            };
+            
+                                                    // realiza una petición ajax a la api jsonplaceholder
+            $.ajax({
+                url: "https://jsonplaceholder.typicode.com/posts",  
+                method: "POST",                    
+                dataType: "json",                  
+                contentType: "application/json",   
+                data: JSON.stringify(datos),       
+                
+                
+                success: function(respuesta){
+                                             // muestra los datos devueltos por la api en el div resultado
+                    $("#resultado").html(
+                        "ID: " + respuesta.id + "<br>" +
+                        "Título: " + respuesta.title + "<br>" +
+                        "Comentario: " + respuesta.body + "<br>" +
+                        "Usuario ID: " + respuesta.userId
+                    );
+                },
+                
+                error: function(){
+                    $("#resultado").text("Hubo un error al enviar los datos");
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>

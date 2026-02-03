@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <h2>Manejo de errores en AJAX</h2>
+    
+    <button id="solicitudExitosa">Solicitud Exitosa</button>
+    <button id="solicitudError">Solicitud con Error</button>
+    
+    <div id="resultado"></div>
+    
+    <script>
+                                                    // se ejecuta cuando el DOM está completamente cargado
+    $(document).ready(function(){
+
+        $("#solicitudExitosa").click(function(){
+                                                             // realiza una petición ajax a una url válida
+            $.ajax({
+                url: "https://jsonplaceholder.typicode.com/posts/1",
+                method: "GET",
+                dataType: "json",
+                success: function(respuesta){
+                                                                     // muestra el título del post obtenido
+                    $("#resultado").text("Éxito: Título - " + respuesta.title);
+                },
+                error: function(){
+                    $("#resultado").text("Error en la solicitud");
+                }
+            });
+        });
+        
+                                                       // captura el click del botón "Solicitud con Error"
+        $("#solicitudError").click(function(){
+                                                        // realiza una petición ajax a una url inválida para generar un error
+            $.ajax({
+                url: "https://jsonplaceholder.typicode.com/incorrecto",
+                method: "GET",
+                dataType: "json",
+                success: function(respuesta){
+                                                         // muestra los datos obtenidos (no se ejecutará en este caso)
+                    $("#resultado").text("Éxito: " + JSON.stringify(respuesta));
+                },
+                                                             // si hay error en la petición - recibe más parámetros para más detalles
+                error: function(jqXHR, textStatus, errorThrown){
+                                                              // muestra detalles del error: estado HTTP, tipo de error y código
+                    $("#resultado").html(
+                        "Error en la solicitud:<br>" +
+                        "Estado: " + textStatus + "<br>" +       
+                        "Error: " + errorThrown + "<br>" +       
+                        "Código HTTP: " + jqXHR.status           
+                    );
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>

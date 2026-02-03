@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 9</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <h2>Scroll Infinito - Fotos</h2>
+    <div id="fotos"></div>
+    <div id="cargando">Cargando...</div>
+    
+    <script>
+                                                        // se ejecuta cuando el dom está completamente cargado
+    $(document).ready(function(){
+        var pagina = 1;
+        var cargando = false;
+        var todasFotos = [];
+        
+                                                           // carga las primeras fotos al abrir la página
+        cargarMasFotos();
+        
+                                                                // captura el evento scroll de la ventana
+        $(window).scroll(function(){
+                                                   // si el usuario ha llegado casi al final de la página
+            if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
+                                        // si no se está cargando ya, carga más fotos
+                if (!cargando) {
+                    cargarMasFotos();
+                }
+            }
+        });
+        
+                                                              // función que carga más fotos desde la api
+        function cargarMasFotos() {
+                                                    // marca que se está cargando para evitar múltiples peticiones simultáneas
+            cargando = true;
+                                                                       // muestra el mensaje "Cargando..."
+            $("#cargando").show();
+            
+                                             // realiza una petición ajax para obtener 20 fotos de la página actual
+            $.ajax({
+                url: "https://jsonplaceholder.typicode.com/photos?_page=" + pagina + "&_limit=20",
+                method: "GET",
+                dataType: "json",
+                success: function(respuesta){
+                                                                          // si la respuesta contiene fotos
+                    if (respuesta.length > 0) {
+                                                                            // muestra las fotos obtenidas
+                        mostrarFotos(respuesta);
+                                                        // incrementa el número de página para la próxima petición
+                        pagina++;
+                                                                       // marca que ya no se está cargando
+                        cargando = false;
+                    }
+                                                                        // oculta el mensaje "Cargando..."
+                    $("#cargando").hide();
+                },
+                error: function(){
+                    $("#cargando").text("Error al cargar fotos");
+                                                       // marca que no se está cargando para permitir reintentos
+                    cargando = false;
+                }
+            });
+        }
+        
+                                                             // función que muestra las fotos en la página
+        function mostrarFotos(fotos) {
+                                                              // recorre cada foto y la agrega a la página
+            $.each(fotos, function(index, foto){
+                $("#fotos").append(
+                    "<div><strong>" + foto.title + "</strong> (ID: " + foto.id + ")<br>" +
+                    "<img src='" + foto.thumbnailUrl + "' alt='" + foto.title + "'><hr></div>"
+                );
+            });
+        }
+    });
+    </script>
+</body>
+</html>

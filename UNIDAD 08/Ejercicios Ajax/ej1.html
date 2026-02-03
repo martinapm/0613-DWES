@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <h1>Solicitar Datos del Servidor</h1>
+    <button onclick="cargarDatos()">Cargar Datos</button>
+    
+                                                                <!-- se muestra los datos del servidor si los datos se cargan correctamente -->
+    <div id="resultado">
+                                                                                                         <!-- se muestra el título del post -->
+        <h3 id="titulo"></h3>
+                                                                                                <!-- se muestra el cuerpo/contenido del post -->
+        <p id="cuerpo"></p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function cargarDatos() {
+                                                                                        // realiza una solicitud ajax get a la URL del servidor
+            $.ajax({
+                url: 'https://jsonplaceholder.typicode.com/posts/1',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                                                                                     // inserta el título del post en el elemento con id "titulo"
+                    document.getElementById('titulo').textContent = data.title;
+                                                                                    // inserta el cuerpo del post en el elemento con id "cuerpo"
+                    document.getElementById('cuerpo').textContent = data.body;
+                                                                            // muestra el div resultado cambiando su propiedad display a 'block'
+                    document.getElementById('resultado').style.display = 'block';
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                    alert('Hubo un error al cargar los datos');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

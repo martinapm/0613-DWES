@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <h2>Actualizar Post</h2>
+    
+    <label for="titulo">Título:</label><br>
+    <input type="text" id="titulo"><br><br>
+    
+    <label for="cuerpo">Cuerpo:</label><br>
+    <textarea id="cuerpo"></textarea><br><br>
+    
+    <button id="cargarPost">Cargar Post</button>
+    <button id="actualizarPost">Actualizar Post</button>
+    
+    <div id="resultado"></div>
+    
+    <script>
+                                                     // se ejecuta cuando el DOM está completamente cargado
+    $(document).ready(function(){
+                                                              // captura el click del botón "Cargar Post"
+        $("#cargarPost").click(function(){
+                                                // realiza una petición AJAX para obtener el post con ID 1
+            $.ajax({
+                url: "https://jsonplaceholder.typicode.com/posts/1",
+                method: "GET",
+                dataType: "json",
+                success: function(respuesta){
+                                                    // rellena los campos de entrada con los datos del post
+                    $("#titulo").val(respuesta.title);
+                    $("#cuerpo").val(respuesta.body);
+                                                                     // muestra un mensaje de confirmación
+                    $("#resultado").text("Post cargado correctamente");
+                },
+                error: function(){
+                    $("#resultado").text("Error al cargar el post");
+                }
+            });
+        });
+        
+        // Ejecuta automáticamente el click para cargar el post al abrir la página
+        $("#cargarPost").click();
+        
+        // Captura el click del botón "Actualizar Post"
+        $("#actualizarPost").click(function(){
+            // Crea un objeto con los datos del formulario
+            var datos = {
+                title: $("#titulo").val(),
+                body: $("#cuerpo").val()
+            };
+            
+                                             // realiza una petición ajax para actualizar el post con ID 1
+            $.ajax({
+                url: "https://jsonplaceholder.typicode.com/posts/1",
+                method: "PUT",                 
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify(datos),   
+                success: function(respuesta){
+                    $("#resultado").html(
+                        "Post actualizado:<br>" +
+                        "ID: " + respuesta.id + "<br>" +
+                        "Título: " + respuesta.title + "<br>" +
+                        "Cuerpo: " + respuesta.body
+                    );
+                },
+                error: function(){
+                    $("#resultado").text("Error al actualizar el post");
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>

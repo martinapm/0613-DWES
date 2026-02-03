@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <h2>Buscar posts por título</h2>
+    <input type="text" id="busqueda" placeholder="Escribe para buscar...">
+    
+    <div id="resultados"></div>
+    
+    <script>
+                                                    // se ejecuta cuando el DOM está completamente cargado
+    $(document).ready(function(){
+                                               // array para almacenar todos los posts obtenidos de la api
+        var todosPosts = [];
+                                              // variable para guardar el id del temporizador (setTimeout)
+        var timeoutId;
+        
+                                       // realiza una petición ajax para obtener todos los posts de la api
+        $.ajax({
+            url: "https://jsonplaceholder.typicode.com/posts",
+            method: "GET",
+            dataType: "json",
+            success: function(respuesta){
+                                                                    // guarda todos los posts en el array
+                todosPosts = respuesta;
+                                                                   // muestra todos los posts inicialmente
+                mostrarPosts(respuesta);
+            },
+            error: function(){
+                $("#resultados").text("Hubo un error al cargar los posts");
+            }
+        });
+        
+        function mostrarPosts(posts) {
+            $("#resultados").empty();
+            
+                                                                    // si no hay posts, muestra un mensaje
+            if (posts.length === 0) {
+                $("#resultados").text("No se encontraron resultados");
+                return;
+            }
+            
+                                                    // recorre cada post y lo agrega al div de resultados
+            $.each(posts, function(index, post){
+                $("#resultados").append(
+                    "<div><strong>" + post.title + "</strong><br>" +
+                    post.body.substring(0, 100) + "..." +                   // muestra los primeros 100 caracteres
+                    "<hr></div>"
+                );
+            });
+        }
+        
+                                                      // captura cada vez que se escribe en el input de búsqueda
+        $("#busqueda").on("input", function(){
+                                                              // cancela el temporizador anterior si existe
+            clearTimeout(timeoutId);
+            
+                                               // establece un temporizador de 500ms antes de buscar (evita buscar a cada letra)
+            timeoutId = setTimeout(function(){
+                                                       // obtiene el término de búsqueda y lo convierte a minúsculas
+                var termino = $("#busqueda").val().toLowerCase();
+                
+                                                            // si el campo está vacío, muestra todos los posts
+                if (termino === "") {
+                    mostrarPosts(todosPosts);
+                    return;
+                }
+                
+                                              // filtra los posts que contengan el término de búsqueda en el título
+                var resultados = todosPosts.filter(function(post){
+                    return post.title.toLowerCase().includes(termino);
+                });
+                
+                                                                          // muestra los posts filtrados
+                mostrarPosts(resultados);
+            }, 500);
+        });
+    });
+    </script>
+</body>
+</html>
