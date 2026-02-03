@@ -1,0 +1,10 @@
+version: '4.53.0'
+
+services:
+installer:
+  image: composer:latest
+  volumnes:
+    - ./:/app
+  working_dir: /app
+  ports:
+    - "8000:8000"
