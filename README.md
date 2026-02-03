@@ -45,6 +45,12 @@ El repositorio contiene los materiales correspondientes a las siguientes unidade
 - Control de errores y buenas prácticas.  
 - Preparación para la conexión con bases de datos y gestión de proyectos.
 
+### 🏗️ Unidad 05 – PHP
+- Introducción al patrón de diseño Modelo Vista Controlador (MVC).
+- Separación de responsabilidades (Lógica de negocio, Interfaz, Control).
+- Generación dinámica de páginas Web con PHP.
+
+
 ---
 
 ## 🧰 Tecnologías y Herramientas Utilizadas
@@ -136,6 +142,14 @@ ini_set('display_errors', 1);
 │   └── Ejercicios_PHP/
 └── Unidad_04/
     └── Ejercicios_PHP/
+└── Unidad_05/
+    └── Ejercicios_PHP/
+└── Unidad_06/
+    └── Ejercicios_PHP/
+└── Unidad_07/
+    └── Ejercicios_PHP/
+└── Unidad_08/
+    └── Ejercicios_PHP/
 ```
 
 ---
@@ -159,3 +173,4 @@ Puedes usar, adaptar o compartir el contenido siempre que cites la fuente origin
 <p align="center">
   ✨<i>“MPM”</i>✨
 </p>
+
