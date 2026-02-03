@@ -56,6 +56,12 @@ El repositorio contiene los materiales correspondientes a las siguientes unidade
 - Gestión de errores y transacciones en operaciones CRUD.
 - Utilización de PDO, ODBC y MongoDB.
 
+### 🔐 Unidad 07 – PHP: Servicios Web y Seguridad
+- Arquitecturas orientadas a servicios: basados en mensajes y recursos (SOAP/REST).
+- Aspectos de seguridad: credenciales, cortafuegos, control de acceso RBAC y protocolos seguros.
+- Tecnologías y protocolos: XML, JSON, HTTP, estándar WSDL para definición de servicios.
+- Generación y consumo de servicios web SOAP y REST con herramientas de prueba.
+
 ---
 
 ## 🧰 Tecnologías y Herramientas Utilizadas
@@ -178,5 +184,6 @@ Puedes usar, adaptar o compartir el contenido siempre que cites la fuente origin
 <p align="center">
   ✨<i>“MPM”</i>✨
 </p>
+
 
 
