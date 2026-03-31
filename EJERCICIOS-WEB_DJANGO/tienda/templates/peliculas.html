@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Películas</title>
+</head>
+<body>
+    <h1>Lista de películas</h1>
+ 
+    {% for pelicula in peliculas %}
+        <p>
+            {{ pelicula.titulo }} - {{ pelicula.director }} ({{ pelicula.año }})
+            | <a href="/pelicula/{{ pelicula.id }}/">Ver</a>
+            | <a href="/pelicula/actualizar/{{ pelicula.id }}/">Editar</a>
+            | <a href="/pelicula/eliminar/{{ pelicula.id }}/">Eliminar</a>
+        </p>
+    {% empty %}
+        <p>No hay películas registradas.</p>
+    {% endfor %}
+ 
+    <br>
+    <a href="/pelicula/insertar/">+ Insertar película de ejemplo</a>
+</body>
+</html>
