@@ -52,15 +52,18 @@ El repositorio contiene los materiales correspondientes a las siguientes unidade
 
 ### 🗄️ Unidad 06 – PHP
 - Establecimiento de conexiones con bases de datos.
-- Recuperación y edición de información con conjuntos de resultados.
 - Gestión de errores y transacciones en operaciones CRUD.
 - Utilización de PDO, ODBC y MongoDB.
 
 ### 🔐 Unidad 07 – PHP: Servicios Web y Seguridad
-- Arquitecturas orientadas a servicios: basados en mensajes y recursos (SOAP/REST).
 - Aspectos de seguridad: credenciales, cortafuegos, control de acceso RBAC y protocolos seguros.
 - Tecnologías y protocolos: XML, JSON, HTTP, estándar WSDL para definición de servicios.
 - Generación y consumo de servicios web SOAP y REST con herramientas de prueba.
+
+### 🌐 Unidad 08 – PHP
+- Generación dinámica de páginas con verificación de información en el cliente.
+- Obtención remota de información asíncrona con AJAX y jQuery.
+- Manipulación del DOM para modificación dinámica de la estructura de páginas web.
 
 ---
 
@@ -151,14 +154,14 @@ ini_set('display_errors', 1);
 │   └── Ejercicios_PHP/
 ├── Unidad_03/
 │   └── Ejercicios_PHP/
-└── Unidad_04/
-    └── Ejercicios_PHP/
-└── Unidad_05/
-    └── Ejercicios_PHP/
-└── Unidad_06/
-    └── Ejercicios_PHP/
-└── Unidad_07/
-    └── Ejercicios_PHP/
+├── Unidad_04/
+│   └── Ejercicios_PHP/
+├── Unidad_05/
+│   └── Ejercicios_PHP/
+├── Unidad_06/
+│   └── Ejercicios_PHP/
+├── Unidad_07/
+│   └── Ejercicios_PHP/
 └── Unidad_08/
     └── Ejercicios_PHP/
 ```
@@ -184,6 +187,8 @@ Puedes usar, adaptar o compartir el contenido siempre que cites la fuente origin
 <p align="center">
   ✨<i>“MPM”</i>✨
 </p>
+
+
 
 
 
