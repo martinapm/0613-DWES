@@ -8,6 +8,9 @@
   <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white"/>
   <img src="https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=apache&logoColor=white"/>
   <img src="https://img.shields.io/badge/XAMPP-FB7A24?style=for-the-badge&logo=xampp&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
   <img src="https://img.shields.io/badge/Server%20Side-4A90E2?style=for-the-badge&logo=serverless&logoColor=white"/>
 </p>
  
@@ -17,13 +20,13 @@
  
 Este repositorio ha sido creado como parte del módulo **"0613. Desarrollo Web en Entorno Servidor"**, perteneciente al **Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Web (DAW)** del **Instituto FOC**.
  
-Aquí se recopilan los **ejercicios y prácticas** realizadas con el lenguaje **PHP**, centradas en el desarrollo del lado del servidor, la generación dinámica de contenido y la interacción con el navegador a través de peticiones HTTP.
+Aquí se recopilan los **ejercicios y prácticas** realizadas con **PHP, Node.js y Django**, centradas en el desarrollo del lado del servidor, la generación dinámica de contenido y la interacción con el navegador a través de peticiones HTTP.
  
 ---
  
 ## 📚 Contenido del Repositorio
  
-El repositorio contiene los materiales correspondientes a las siguientes unidades:
+El repositorio contiene los materiales correspondientes a las siguientes unidades y tecnologías:
  
 ### 🧠 Unidad 01 – PHP  
 - Primeros pasos con **PHP**.  
@@ -70,6 +73,16 @@ El repositorio contiene los materiales correspondientes a las siguientes unidade
 - Comunicación con servicios Web (SOAP, XML-RPC, REST) y librerías de Big Data e inteligencia de negocios.
 - Prueba, depuración y documentación de aplicaciones Web con herramientas como JMeter.
  
+### 🟢 Node.js
+- Creación de un servidor HTTP con Node.js y gestión de rutas y middleware con Express.
+- Manejo de módulos, npm y conexión a bases de datos desde el backend.
+- Desarrollo de APIs RESTful y comunicación asíncrona con el cliente.
+ 
+### 🐍 Django
+- Configuración del entorno, estructura de un proyecto Django y sistema de URLs.
+- Modelos, migraciones y operaciones CRUD con el ORM de Django.
+- Vistas, plantillas y formularios para la generación dinámica de páginas web.
+ 
 ---
  
 ## 🧰 Tecnologías y Herramientas Utilizadas
@@ -79,6 +92,10 @@ El repositorio contiene los materiales correspondientes a las siguientes unidade
 | **PHP** | Lenguaje de programación del lado del servidor para generar contenido dinámico en la web. |
 | **Apache** | Servidor web utilizado por XAMPP para ejecutar scripts PHP localmente. |
 | **XAMPP** | Paquete que incluye Apache, PHP y MySQL para pruebas y desarrollo local. |
+| **Node.js** | Entorno de ejecución de JavaScript en el servidor, orientado a aplicaciones escalables y en tiempo real. |
+| **Express** | Framework minimalista para Node.js que simplifica la creación de servidores y APIs. |
+| **Django** | Framework de alto nivel en Python para el desarrollo web rápido y seguro. |
+| **Python** | Lenguaje de programación utilizado como base para el framework Django. |
 | **HTML / CSS** | Soporte para la presentación y estructura de las páginas dinámicas. |
  
 ---
@@ -140,13 +157,64 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ```
  
+---
+ 
+## 🟢 Cómo Ejecutar los Ejercicios de Node.js
+ 
+1. Instala **Node.js** desde [https://nodejs.org](https://nodejs.org).
+2. Abre una terminal en la carpeta del ejercicio.
+3. Instala las dependencias si existe un archivo `package.json`:
+ 
+```bash
+npm install
+```
+ 
+4. Ejecuta el archivo deseado:
+ 
+```bash
+node nombre_archivo.js
+```
+ 
+5. Accede desde el navegador a `http://localhost:3000` (o el puerto indicado en el ejercicio).
+ 
+---
+ 
+## 🐍 Cómo Ejecutar los Ejercicios de Django
+ 
+1. Instala **Python** desde [https://www.python.org](https://www.python.org).
+2. Crea y activa un entorno virtual:
+ 
+```bash
+python -m venv venv
+source venv/bin/activate        # Linux / Mac
+venv\Scripts\activate           # Windows
+```
+ 
+3. Instala Django y las dependencias del proyecto:
+ 
+```bash
+pip install -r requirements.txt
+```
+ 
+4. Aplica las migraciones y arranca el servidor:
+ 
+```bash
+python manage.py migrate
+python manage.py runserver
+```
+ 
+5. Accede desde el navegador a `http://localhost:8000`.
+ 
+---
+ 
 ## 🎯 Objetivos de Aprendizaje
  
 - Comprender los fundamentos del **desarrollo web del lado del servidor**.  
-- Aprender a **crear scripts dinámicos** con PHP.  
+- Aprender a **crear scripts dinámicos** con PHP, Node.js y Django.  
 - Gestionar datos mediante **formularios, sesiones y cookies**.  
 - Conocer el funcionamiento de un **servidor web local (Apache)**.  
-- Prepararse para conectar **PHP con bases de datos (MySQL, MariaDB, etc.)**.
+- Desarrollar **APIs RESTful** y manejar comunicación asíncrona.  
+- Prepararse para conectar aplicaciones con **bases de datos (MySQL, MariaDB, MongoDB, etc.)**.
  
 ---
  
@@ -169,8 +237,12 @@ ini_set('display_errors', 1);
 │   └── Ejercicios_PHP/
 ├── Unidad_08/
 │   └── Ejercicios_PHP/
-└── Unidad_09/
-    └── Ejercicios_PHP/
+├── Unidad_09/
+│   └── Ejercicios_PHP/
+├── Node.js/
+│   └── Ejercicios_Node/
+└── Django/
+    └── Ejercicios_Django/
 ```
  
 ---
